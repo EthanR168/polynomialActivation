@@ -6,7 +6,7 @@ import seaborn as sns
 
 # Load results
 results = np.load("results/experiment3_SyntheticData/experiment3_SyntheticData.npz", allow_pickle=True)
-results = {k: v.item() for k, v in results.items()}  # assumes each v is a 0-d object array containing a dict
+results = {k: v.item() for k, v in results.items()}  
 
 saveDir = "results/experiment3_SyntheticData/graphs/experiment3"
 
@@ -18,10 +18,7 @@ tasks = ["linear", "polynomial", "discontinuous", "oscillatory"]
 task_labels = ["Linear", "Polynomial", "Discontinuous", "Oscillatory"]
 activations = ["ReLU", "Sigmoid", "Quad-Node", "Cubic-Node"]
 
-# ============================================================
-# 1. HEATMAP: Final Test Loss by Task × Activation
-# ============================================================
-
+# Final Test Loss heat map
 fig, ax = plt.subplots(1, 1, figsize=(10, 6))
 heatmap_data = np.zeros((len(tasks), len(activations)))
 
@@ -45,10 +42,7 @@ plt.savefig(f"{saveDir}_heatmap.png", dpi=300, bbox_inches='tight')
 plt.close()
 
 
-# ============================================================
-# 2. LEARNING CURVES: Test Loss Over Epochs (All Tasks)
-# ============================================================
-
+# Test Loss Over Epochs 
 fig, axes = plt.subplots(2, 2, figsize=(18, 12))
 axes = axes.flatten()
 
@@ -79,10 +73,7 @@ plt.savefig(f"{saveDir}_test_loss.png", dpi=300, bbox_inches='tight')
 plt.close()
 
 
-# ============================================================
-# 3. LEARNING CURVES: Train Loss Over Epochs (All Tasks)
-# ============================================================
-
+# Train Loss Over Epochs 
 fig, axes = plt.subplots(2, 2, figsize=(18, 12))
 axes = axes.flatten()
 
